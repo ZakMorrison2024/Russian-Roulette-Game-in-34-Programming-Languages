@@ -1,0 +1,39 @@
+// RussianRoulette.xojo
+
+Dim chambers(5) As Boolean  // Array of 6 chambers (1 loaded, 5 empty)
+Dim loadedChamber As Integer // Which chamber is loaded (random)
+Dim shotFired As Boolean    // Shot fired or not
+
+// Setup the game
+Sub SetupGame()
+    // Randomly select which chamber is loaded (0-5 for 6 chambers)
+    loadedChamber = Int(Rnd * 6) // Random number between 0 and 5
+    shotFired = False
+    For i As Integer = 0 To 5
+        chambers(i) = False  // Initialize all chambers as empty
+    Next
+    chambers(loadedChamber) = True  // Mark the loaded chamber
+End Sub
+
+// Simulate pulling the trigger
+Sub PullTrigger()
+    Dim firedChamber As Integer = Int(Rnd * 6) // Randomly pick a chamber (0-5)
+    
+    If chambers(firedChamber) Then
+        shotFired = True
+        MsgBox("BANG! You're dead. The loaded chamber was: " + Str(firedChamber + 1))
+    Else
+        shotFired = False
+        MsgBox("Click! No shot. The chamber was empty.")
+    End If
+End Sub
+
+// Start the game
+Sub StartGame()
+    SetupGame()
+    MsgBox("Welcome to Russian Roulette! Click 'OK' to pull the trigger.")
+    PullTrigger()
+End Sub
+
+// Call this in the window or as part of an event, like a button press
+StartGame()

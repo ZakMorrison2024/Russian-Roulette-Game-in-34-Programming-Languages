@@ -1,0 +1,16 @@
+function russian_roulette()
+    chambers = [false, false, false, false, false];
+    chambers = [chambers, true];  % 1 chamber with a bullet
+    chambers = chambers(randperm(length(chambers)));  % Shuffle chambers
+
+    disp('Welcome to Russian Roulette!');
+    pause;  % Wait for user to press any key
+
+    if chambers(1)
+        disp('Bang! You''re dead!');
+    else
+        disp('Click. You''re safe... for now.');
+    end
+end
+
+russian_roulette()
